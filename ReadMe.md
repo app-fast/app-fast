@@ -1,6 +1,6 @@
-Concurrent package downloader written in bash/zsh, support macOS and Linux.
+Concurrent package downloader written in bash/zsh, for macOS and Linux.
 
-Inspired by [apt-fast](https://github.com/ilikenwf/apt-fast).
+Inspired by [apt-fast](https://github.com/ilikenwf/apt-fast) and [powerpill](https://aur.archlinux.org/packages/powerpill).
 
 The only dependency is aria2.
 
