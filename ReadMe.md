@@ -61,7 +61,7 @@ Make sure you have the permission to execute it `chmod +x app-fast`.
 
 ### Why not apt-fast or powerpill
 
-* I use it for docker containers, only installing packages is needed.
+* I use it for docker containers and [KVMs](https://en.wikipedia.org/wiki/Kernel-based_Virtual_Machine), only installing packages is needed.
 
 ### License
 
