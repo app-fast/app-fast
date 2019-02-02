@@ -29,7 +29,7 @@ app-fast -Syu
 
 ### Install
 
-Just download (app-fast)[./app-fast] and save it to somewhere like `/usr/bin/app-fast`.
+Just download (app-fast)[app-fast] and save it to somewhere like `/usr/bin/app-fast`.
 
 on macOS, you should put it to `/usr/local/bin/app-fast`.
 
