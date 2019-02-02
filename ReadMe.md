@@ -48,11 +48,10 @@ Make sure you have the permission to execute it `chmod +x app-fast`.
 * Uninstall a package
 * Search a package
 * Support Android Termux
+* Support Archlinux AUR
 * Support macOS homebrew tap
 * Support macOS homebrew bottles like `bottles-science`
 * Support Ubuntu mirror protocal like `mirror://mirrors.ubuntu.com/mirrors.txt`
-* Support RPM-based Linux
-* Support Alpine Linux
 
 ### Note
 

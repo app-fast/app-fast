@@ -51,10 +51,16 @@ fi
 #      GNU/Linux     #
 #                    #
 ######################
+
 [ "$OSTYPE" = "linux-gnu" ] && [ "`whoami`" = root ] || exec sudo "$0" "$@"
 
-# Ubuntu/Debian
-if echo "$@" | grep -q "upgrade\|install\|dist-upgrade\|full-upgrade\|build-dep"; then
+######################
+#                    #
+#    Ubuntu/Debian   #
+#                    #
+######################
+
+if [ $(command -v apt-get) ] && echo "$@" | grep -q "upgrade\|install\|dist-upgrade\|full-upgrade\|build-dep"; then
   APT=$([ $(command -v apt) ] && echo "apt" || echo "apt-get")
   cd /var/cache/apt/archives/
 
@@ -66,15 +72,22 @@ if echo "$@" | grep -q "upgrade\|install\|dist-upgrade\|full-upgrade\|build-dep"
   $APT -y --print-uris $@ | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee app-fast.list && aria2c -c $DOWNLOADARGS $DNS -i app-fast.list && rm -f app-fast.list
 
   echo $APT $@
-  $APT $@ && rm -f /var/cache/apt/archives/app-fast.list
+  $APT $@ && rm -f /var/cache/apt/archives/app-fast.list && exit 0
+  exit 1
 
-# Ubuntu/Debian
 elif echo "$@" | grep -q "update"; then
   APT=$([ $(command -v apt) ] && echo "apt" || echo "apt-get")
   $APT -o 'Acquire::Queue-mode=access; APT::Acquire=Retries 3;' update
+  exit 0
+fi
 
-# Archlinux
-elif echo "$@" | grep -q "\-S"; then
+######################
+#                    #
+#    Arch/Manjaro    #
+#                    #
+######################
+
+if [ $(command -v pacman) ] && echo "$@" | grep -q "\-S"; then
   cd /var/cache/pacman/pkg/
 
   # Download unfinished jobs
@@ -82,9 +95,10 @@ elif echo "$@" | grep -q "\-S"; then
   [ -f app-fast.list ] && aria2c $DOWNLOADARGS $DNS -i app-fast.list
 
   # Create new jobs
-  pacman -Syup --print-format "%l" | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee app-fast.list
+  #pacman -Syup --print-format "%l" | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee app-fast.list
   pacman $@ --print --print-format "%l" | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee -a app-fast.list && aria2c -c $DOWNLOADARGS $DNS -i app-fast.list
 
   echo "pacman $@"
-  pacman $@ && rm -f /var/cache/pacman/pkg/app-fast.list
+  pacman $@ && rm -f /var/cache/pacman/pkg/app-fast.list && exit 0
+  exit 1
 fi
