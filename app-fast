@@ -1,10 +1,9 @@
 #!/bin/bash
 
 DOWNLOADARGS='-c -s16 -k1M -x16'
-DNS=""
 
 if ping -c 1 -W 1 8.8.8.8 2>/dev/null | grep -q -i "ttl"; then
-  DNS="--async-dns-server=8.8.8.8"
+  DOWNLOADARGS="$DOWNLOADARGS --async-dns-server=8.8.8.8"
 fi
 
 ######################
@@ -20,7 +19,7 @@ if [[ "$OSTYPE" == "darwin"* ]] && echo "$@" | grep -q "upgrade\|install"; then
 
   # Download unfinished jobs
   [ $(command -v aria2c) ] || brew install aria2
-  [ -f app-fast.list ] && aria2c $DOWNLOADARGS $DNS -i app-fast.list
+  [ -f app-fast.list ] && aria2c $DOWNLOADARGS -i app-fast.list
 
   # Create new jobs
   packages=($(echo " ${@:2} " | perl -C -Mutf8 -pe "s/ -[a-zA-Z-]\+//g")$(brew outdated --quiet))
@@ -38,10 +37,10 @@ if [[ "$OSTYPE" == "darwin"* ]] && echo "$@" | grep -q "upgrade\|install"; then
     done <<< "$(brew --cache $(echo \\"${alldeps}\\"))"
   done
 
-  [ -f app-fast.list ] && aria2c $DOWNLOADARGS $DNS -i app-fast.list
+  [ -f app-fast.list ] && aria2c $DOWNLOADARGS -i app-fast.list
 
   echo "brew $@"
-  brew $@ && rm -f ~/Library/Caches/Homebrew/downloads/app-fast.list && exit 0
+  brew $@ && rm -f app-fast.list && exit 0
 
   exit 1
 fi
@@ -61,24 +60,27 @@ fi
 ######################
 
 if [ $(command -v apt-get) ] && echo "$@" | grep -q "upgrade\|install\|dist-upgrade\|full-upgrade\|build-dep"; then
+
   APT=$([ $(command -v apt) ] && echo "apt" || echo "apt-get")
   cd /var/cache/apt/archives/
 
   # Download unfinished jobs
   [ $(command -v aria2c) ] || $APT install -y aria2
-  [ -f app-fast.list ] && aria2c $DOWNLOADARGS $DNS -i app-fast.list
+  [ -f app-fast.list ] && aria2c $DOWNLOADARGS -i app-fast.list
 
   # Create new jobs
-  $APT -y --print-uris $@ | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee app-fast.list && aria2c -c $DOWNLOADARGS $DNS -i app-fast.list && rm -f app-fast.list
+  $APT -y --print-uris $@ | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee app-fast.list && aria2c -c $DOWNLOADARGS -i app-fast.list
 
   echo $APT $@
-  $APT $@ && rm -f /var/cache/apt/archives/app-fast.list && exit 0
+  $APT $@ && rm -f app-fast.list && exit 0
   exit 1
 
-elif echo "$@" | grep -q "update"; then
+elif [ $(command -v apt-get) ] && echo "$@" | grep -q "update"; then
+
   APT=$([ $(command -v apt) ] && echo "apt" || echo "apt-get")
   $APT -o 'Acquire::Queue-mode=access; APT::Acquire=Retries 3;' update
   exit 0
+
 fi
 
 ######################
@@ -92,13 +94,13 @@ if [ $(command -v pacman) ] && echo "$@" | grep -q "\-S"; then
 
   # Download unfinished jobs
   [ $(command -v aria2c) ] || pacman -S --noconfirm --needed aria2
-  [ -f app-fast.list ] && aria2c $DOWNLOADARGS $DNS -i app-fast.list
+  [ -f app-fast.list ] && aria2c $DOWNLOADARGS -i app-fast.list
 
   # Create new jobs
   #pacman -Syup --print-format "%l" | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee app-fast.list
-  pacman $@ --print --print-format "%l" | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee -a app-fast.list && aria2c -c $DOWNLOADARGS $DNS -i app-fast.list
+  pacman $@ --print --print-format "%l" | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee -a app-fast.list && aria2c -c $DOWNLOADARGS -i app-fast.list
 
   echo "pacman $@"
-  pacman $@ && rm -f /var/cache/pacman/pkg/app-fast.list && exit 0
+  pacman $@ && rm -f app-fast.list && exit 0
   exit 1
 fi

@@ -52,10 +52,16 @@ Make sure you have the permission to execute it `chmod +x app-fast`.
 * Support macOS homebrew tap
 * Support macOS homebrew bottles like `bottles-science`
 * Support Ubuntu mirror protocal like `mirror://mirrors.ubuntu.com/mirrors.txt`
+* Support proxies
 
 ### Note
 
 * I don't have any apple devices so macOS port is experimental.
+* On Linux I use sed command, on macOS I use perl command.
+
+### Why not apt-fast or powerpill
+
+* I use it for docker containers, only installing packages is needed.
 
 ### License
 
