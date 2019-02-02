@@ -51,7 +51,7 @@ Make sure you have the permission to execute it `chmod +x app-fast`.
 * Support Archlinux AUR
 * Support macOS homebrew tap
 * Support macOS homebrew bottles like `bottles-science`
-* Support Ubuntu mirror protocal like `mirror://mirrors.ubuntu.com/mirrors.txt`
+* Support Ubuntu mirror protocol like `mirror://mirrors.ubuntu.com/mirrors.txt`
 * Support proxies
 
 ### Note
