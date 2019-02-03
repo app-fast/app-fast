@@ -78,7 +78,7 @@ if [ $(command -v apt-get) ] && echo "$@" | grep -q "upgrade\|install\|dist-upgr
 elif [ $(command -v apt-get) ] && echo "$@" | grep -q "update"; then
 
   APT=$([ $(command -v apt) ] && echo "apt" || echo "apt-get")
-  $APT -o 'Acquire::Queue-mode=access; APT::Acquire=Retries 3;' update
+  $APT -o 'Acquire::Queue-mode=host; APT::Acquire=Retries 2;' update
   exit 0
 
 fi
@@ -97,8 +97,7 @@ if [ $(command -v pacman) ] && echo "$@" | grep -q "\-S"; then
   [ -f app-fast.list ] && aria2c $DOWNLOADARGS -i app-fast.list
 
   # Create new jobs
-  #pacman -Syup --print-format "%l" | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee app-fast.list
-  pacman $@ --print --print-format "%l" | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee -a app-fast.list && aria2c -c $DOWNLOADARGS -i app-fast.list
+  pacman $@ --print --print-format "%l" | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee app-fast.list && aria2c -c $DOWNLOADARGS -i app-fast.list
 
   echo "pacman $@"
   pacman $@ && rm -f app-fast.list && exit 0
