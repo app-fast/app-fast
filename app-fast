@@ -11,7 +11,7 @@ fi
 #     Apple macOS    #
 #                    #
 ######################
-if [[ "$OSTYPE" == "darwin"* ]] && echo "$@" | grep -q "upgrade\|install"; then
+if [ "$OSTYPE" =~ "darwin" ] && echo "$@" | grep -q "upgrade\|install"; then
   [ "`whoami`" = root ] && echo "Don't use sudo." && exit 1
 
   cd ~/Library/Caches/Homebrew/downloads
