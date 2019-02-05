@@ -32,8 +32,9 @@ if echo "$OSTYPE" | grep -q "darwin" && echo "$@" | grep -q "upgrade\|install"; 
 
     while read -r dep; do
       filename=$(echo "$dep" | perl -C -Mutf8 -pe "s/.*--//")
+      cachename=$(echo "$dep" | perl -C -Mutf8 -pe "s/.*\///")
       echo "$baseurl/bottles/$filename" | tee -a app-fast.list
-      echo " out=$(echo "$dep" | perl -C -Mutf8 -pe "s/.*\///")" | tee -a app-fast.list
+      echo " out=$cachename" | tee -a app-fast.list
     done <<< "$(brew --cache $(echo \\"${alldeps}\\"))"
   done
 
