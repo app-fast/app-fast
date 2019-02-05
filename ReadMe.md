@@ -10,7 +10,7 @@ on macOS:
 
 ```sh
 app-fast install vim tmux git
-app-fast upgrade
+brew update && app-fast upgrade
 ```
 
 on Ubuntu/Debian:
