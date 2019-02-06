@@ -31,9 +31,11 @@ app-fast -Syu
 
 Just download [app-fast](app-fast) and save it to somewhere like `/usr/bin/app-fast`.
 
-on macOS, you should put it to `/usr/local/bin/app-fast`.
+On macOS, you should put it to `/usr/local/bin/app-fast`.
 
 Make sure you have the permission to execute it `chmod +x app-fast`.
+
+On Windows Msys2, you should put [aria2.exe](https://github.com/aria2/aria2/releases) to your system path.
 
 ### What it does
 
