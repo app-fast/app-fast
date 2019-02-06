@@ -12,7 +12,8 @@ fi
 #                    #
 ######################
 if echo "$OSTYPE" | grep -q "darwin" && echo "$@" | grep -q "upgrade\|install"; then
-  [ "`whoami`" = root ] && echo "Don't use sudo." && exit 1
+  [ "`whoami`" = root ] && echo "Please don't use sudo." && exit 1
+  [ $(command -v brew) ] || echo "Please install hombrew first." && exit 1
 
   cd ~/Library/Caches/Homebrew/downloads
   baseurl=$([ ${HOMEBREW_BOTTLE_DOMAIN} ] && echo "${HOMEBREW_BOTTLE_DOMAIN}" || echo "https://homebrew.bintray.com")
