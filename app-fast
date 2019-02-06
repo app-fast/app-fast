@@ -54,7 +54,9 @@ fi
 #                    #
 ######################
 
-[ "$OSTYPE" = "linux-gnu" ] && [ "`whoami`" = root ] || exec sudo "$0" "$@"
+if [ "$OSTYPE" == "linux-gnu" ]; then
+  [ "`whoami`" == "root" ] || exec sudo "$0" "$@"
+fi
 
 ######################
 #                    #
@@ -89,7 +91,7 @@ fi
 
 ######################
 #                    #
-#    Arch/Manjaro    #
+#     Arch/Msys2     #
 #                    #
 ######################
 

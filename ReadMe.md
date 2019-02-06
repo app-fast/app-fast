@@ -1,4 +1,4 @@
-Concurrent package downloader written in bash/zsh, for macOS and Linux.
+Concurrent package downloader written in bash/zsh, for macOS, Linux and Windows Msys2.
 
 Inspired by [apt-fast](https://github.com/ilikenwf/apt-fast) and [powerpill](https://aur.archlinux.org/packages/powerpill).
 
@@ -20,7 +20,7 @@ app-fast install vim tmux git -y
 app-fast upgrade -y
 ```
 
-on Archlinux/Manjaro:
+on Archlinux/Manjaro/Windows Msys2:
 
 ```sh
 app-fast -S vim tmux git
@@ -42,6 +42,7 @@ Make sure you have the permission to execute it `chmod +x app-fast`.
 * Support macOS homebrew
 * Support Ubuntu/Debian
 * Support Archlinux
+* Support Windows Msys2
 
 ### What it doesn't
 
