@@ -35,7 +35,7 @@ On macOS, you should put it to `/usr/local/bin/app-fast`.
 
 Make sure you have the permission to execute it `chmod +x app-fast`.
 
-On Windows Msys2, you should put [aria2.exe](https://github.com/aria2/aria2/releases) to your system path.
+On Windows Msys2, you should put [aria2.exe](https://github.com/aria2/aria2/releases) to your system path first, because Msys2 does not provide aria2 package.
 
 ### What it does
 
