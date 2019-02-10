@@ -13,7 +13,7 @@ fi
 ######################
 if echo "$OSTYPE" | grep -q "darwin" && echo "$@" | grep -q "upgrade\|install"; then
   [ "`whoami`" = root ] && echo "Please don't use sudo." && exit 1
-  [ $(command -v brew) ] || echo "Please install hombrew first." && exit 1
+  [ $(command -v brew) ] || echo "Please install homebrew first." && exit 1
 
   mkdir -p ~/Library/Caches/Homebrew/downloads
   cd ~/Library/Caches/Homebrew/downloads
@@ -21,7 +21,7 @@ if echo "$OSTYPE" | grep -q "darwin" && echo "$@" | grep -q "upgrade\|install"; 
 
   # Download unfinished jobs
   [ $(command -v aria2c) ] || brew install aria2
-  [ -f app-fast.list ] && aria2c $DOWNLOADARGS -i app-fast.list
+  [ -f app-fast.list ] && echo "Downloading unfinished jobs." && aria2c $DOWNLOADARGS -i app-fast.list
 
   # Create new jobs
   packages=($(echo " ${@:2} " | perl -C -Mutf8 -pe "s/ -[a-zA-Z-]\+//g")$(brew outdated --quiet))
@@ -72,7 +72,7 @@ if [ $(command -v apt-get) ] && echo "$@" | grep -q "upgrade\|install\|dist-upgr
 
   # Download unfinished jobs
   [ $(command -v aria2c) ] || $APT install -y aria2
-  [ -f app-fast.list ] && aria2c $DOWNLOADARGS -i app-fast.list
+  [ -f app-fast.list ] && echo "Downloading unfinished jobs." && aria2c $DOWNLOADARGS -i app-fast.list
 
   # Create new jobs
   $APT -y --print-uris $@ | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee app-fast.list && aria2c -c $DOWNLOADARGS -i app-fast.list
@@ -101,7 +101,7 @@ if [ $(command -v pacman) ] && echo "$@" | grep -q "\-S"; then
 
   # Download unfinished jobs
   [ $(command -v aria2c) ] || pacman -S --noconfirm --needed aria2
-  [ -f app-fast.list ] && aria2c $DOWNLOADARGS -i app-fast.list
+  [ -f app-fast.list ] && echo "Downloading unfinished jobs." && aria2c $DOWNLOADARGS -i app-fast.list
 
   # Create new jobs
   pacman $@ --print --print-format "%l" | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee app-fast.list && aria2c -c $DOWNLOADARGS -i app-fast.list
