@@ -9,8 +9,9 @@ The only dependency is aria2.
 on macOS:
 
 ```sh
+brew update
 app-fast install vim tmux git
-brew update && app-fast upgrade
+app-fast upgrade
 ```
 
 on Ubuntu/Debian:
