@@ -17,6 +17,7 @@ app-fast upgrade
 on Ubuntu/Debian:
 
 ```sh
+app-fast update
 app-fast install vim tmux git -y
 app-fast upgrade -y
 ```
