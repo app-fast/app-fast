@@ -42,7 +42,7 @@ if echo "$OSTYPE" | grep -q "darwin" && echo "$@" | grep -q "upgrade\|install"; 
 
   [ -f app-fast.list ] && aria2c $DOWNLOADARGS -i app-fast.list
 
-  echo "brew $@"
+  echo "Executing: brew $@"
   brew $@ && rm -f app-fast.list && exit 0
 
   exit 1
@@ -77,7 +77,7 @@ if [ $(command -v apt-get) ] && echo "$@" | grep -q "upgrade\|install\|dist-upgr
   # Create new jobs
   $APT -y --print-uris $@ | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee app-fast.list && aria2c -c $DOWNLOADARGS -i app-fast.list
 
-  echo $APT $@
+  echo "Executing: $APT $@"
   $APT $@ && rm -f app-fast.list && exit 0
   exit 1
 
@@ -106,7 +106,7 @@ if [ $(command -v pacman) ] && echo "$@" | grep -q "\-S"; then
   # Create new jobs
   pacman $@ --print --print-format "%l" | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee app-fast.list && aria2c -c $DOWNLOADARGS -i app-fast.list
 
-  echo "pacman $@"
-  pacman $@ && rm -f app-fast.list && exit 0
+  echo "Executing: pacman $@"
+  pacman $(echo "$1" | sed "s/y//g") ${@:2} && rm -f app-fast.list && exit 0
   exit 1
 fi
