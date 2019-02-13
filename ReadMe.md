@@ -2,7 +2,7 @@ Concurrent package downloader written in bash/zsh, for macOS, Linux and Windows 
 
 Inspired by [apt-fast](https://github.com/ilikenwf/apt-fast) and [powerpill](https://aur.archlinux.org/packages/powerpill).
 
-The only dependency is aria2.
+The only dependency is [aria2](https://github.com/aria2/aria2).
 
 ### Usage
 
