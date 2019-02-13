@@ -39,6 +39,30 @@ Make sure you have the permission to execute it `chmod +x app-fast`.
 
 On Windows Msys2, you should put [aria2.exe](https://github.com/aria2/aria2/releases) to your system path first, because Msys2 does not provide aria2 package.
 
+
+### One-liner install
+
+Wget
+
+```sh
+sudo wget https://raw.githubusercontent.com/joeky888/app-fast/master/app-fast -O /usr/bin/app-fast
+sudo chmod +x /usr/bin/app-fast
+```
+
+Curl
+
+```sh
+sudo curl https://raw.githubusercontent.com/joeky888/app-fast/master/app-fast -o /usr/bin/app-fast
+sudo chmod +x /usr/bin/app-fast
+```
+
+Aria2
+
+```sh
+sudo aria2c https://raw.githubusercontent.com/joeky888/app-fast/master/app-fast -d / -o /usr/bin/app-fast
+sudo chmod +x /usr/bin/app-fast
+```
+
 ### What it does
 
 * Download packages faster
