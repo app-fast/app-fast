@@ -63,6 +63,13 @@ sudo aria2c https://raw.githubusercontent.com/joeky888/app-fast/master/app-fast 
 sudo chmod +x /usr/bin/app-fast
 ```
 
+### Install for macOS
+
+```sh
+curl https://raw.githubusercontent.com/joeky888/app-fast/master/app-fast -o /usr/local/bin/app-fast
+chmod +x /usr/local/bin/app-fast
+```
+
 ### What it does
 
 * Download packages faster
