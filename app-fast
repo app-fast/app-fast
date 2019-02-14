@@ -13,7 +13,10 @@ fi
 ######################
 if echo "$OSTYPE" | grep -q "darwin" && echo "$@" | grep -q "upgrade\|install"; then
   [ "`whoami`" = root ] && echo "Please don't use sudo." && exit 1
-  [ $(command -v brew) ] || echo "Please install homebrew first." && exit 1
+
+  if ! [ $(command -v brew) ]; then
+    echo "Please install homebrew first." && exit 1
+  fi
 
   mkdir -p ~/Library/Caches/Homebrew/downloads
   cd ~/Library/Caches/Homebrew/downloads
