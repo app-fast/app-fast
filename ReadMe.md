@@ -67,7 +67,7 @@ sudo chmod +x /usr/bin/app-fast
 
 ```sh
 curl https://raw.githubusercontent.com/joeky888/app-fast/master/app-fast -o /usr/local/bin/app-fast
-chmod +x /usr/local/bin/app-fast
+sudo chmod +x /usr/local/bin/app-fast
 ```
 
 ### What it does
