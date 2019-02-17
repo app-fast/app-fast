@@ -24,7 +24,13 @@ if echo "$OSTYPE" | grep -q "darwin" && echo "$@" | grep -q "upgrade\|install"; 
   [ -f app-fast.list ] && echo "Downloading unfinished jobs." && aria2c $DOWNLOADARGS -i app-fast.list
 
   # Create new jobs
-  packages=($(echo " ${@:2} " | perl -C -Mutf8 -pe "s/ -[a-zA-Z-]\+//g")$(brew outdated --quiet))
+  packages=""
+  if echo "$@" | grep -q "upgrade"; then
+    packages=($(brew outdated --quiet))
+  elif echo "$@" | grep -q "install"; then
+    packages=($(echo " ${@:2} " | perl -C -Mutf8 -pe "s/ -[a-zA-Z-]\+//g"))
+  fi
+
 
   for package in "${packages[@]}"
   do
