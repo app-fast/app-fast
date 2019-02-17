@@ -73,8 +73,8 @@ fi
 if [ $(command -v apt-get) ] && echo "$@" | grep -q "upgrade\|install\|dist-upgrade\|full-upgrade\|build-dep"; then
 
   APT=$([ $(command -v apt) ] && echo "apt" || echo "apt-get")
-  mkdir -p /var/cache/apt/archives
-  cd /var/cache/apt/archives/
+  mkdir -p /var/cache/apt/archives/partial
+  cd /var/cache/apt/archives/partial
 
   # Download unfinished jobs
   [ $(command -v aria2c) ] || $APT install -y aria2
