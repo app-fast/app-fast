@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOWNLOADARGS='-c -s16 -k1M -x16'
+DOWNLOADARGS='-c -s16 -k1M -x16 -j16'
 
 if ping -c 1 -W 1 8.8.8.8 2>/dev/null | grep -q -i "ttl"; then
   DOWNLOADARGS="$DOWNLOADARGS --async-dns-server=8.8.8.8"
