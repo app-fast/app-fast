@@ -11,7 +11,7 @@ fi
 #     Apple macOS    #
 #                    #
 ######################
-if echo "$OSTYPE" | grep -q "darwin" && echo "$@" | grep -q "upgrade\|install"; then
+if echo "$OSTYPE" | grep -q "darwin" && echo "$@" | grep -q -E "upgrade|install"; then
   [ "`whoami`" = root ] && echo "Please don't use sudo." && exit 1
   ! [ $(command -v brew) ] && echo "Please install homebrew first." && exit 1
 
@@ -70,7 +70,7 @@ fi
 #                    #
 ######################
 
-if [ $(command -v apt-get) ] && echo "$@" | grep -q "upgrade\|install\|dist-upgrade\|full-upgrade\|build-dep"; then
+if [ $(command -v apt-get) ] && echo "$@" | grep -q -E "upgrade|install|dist-upgrade|full-upgrade|build-dep"; then
 
   APT=$([ $(command -v apt) ] && echo "apt" || echo "apt-get")
 
