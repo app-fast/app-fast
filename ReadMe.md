@@ -14,7 +14,7 @@ app-fast install vim tmux git
 app-fast upgrade
 ```
 
-on Ubuntu/Debian:
+on Ubuntu/Debian/Android Termux:
 
 ```sh
 app-fast update
@@ -77,13 +77,13 @@ sudo chmod +x /usr/local/bin/app-fast
 * Support macOS homebrew
 * Support Ubuntu/Debian
 * Support Archlinux
+* Support Android Termux
 * Support Windows Msys2
 
 ### What it doesn't
 
 * Uninstall a package
 * Search a package
-* Support Android Termux
 * Support Archlinux AUR
 * Support macOS homebrew tap
 * Support macOS homebrew bottles like `bottles-science` and `bottle :unneeded`
