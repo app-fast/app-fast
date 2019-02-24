@@ -1,4 +1,4 @@
-Concurrent package downloader written in bash/zsh, for macOS, Linux and Windows Msys2.
+Concurrent package downloader written in bash/zsh, for macOS, Linux, Android and Windows Msys2.
 
 Inspired by [apt-fast](https://github.com/ilikenwf/apt-fast) and [powerpill](https://aur.archlinux.org/packages/powerpill).
 
