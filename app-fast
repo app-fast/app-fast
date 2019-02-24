@@ -102,8 +102,9 @@ fi
 ######################
 
 if [ $(command -v pacman) ] && echo "$@" | grep -q "\-S"; then
-  mkdir -p /var/cache/pacman/pkg
-  cd /var/cache/pacman/pkg/
+  cachedir=$(pacman -v 2>/dev/null | grep Cache | cut -f 3 -d " ")
+  mkdir -p $cachedir
+  cd $cachedir
 
   # Download unfinished jobs
   [ $(command -v aria2c) ] || pacman -S --noconfirm --needed aria2
