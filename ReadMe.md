@@ -70,6 +70,13 @@ curl https://raw.githubusercontent.com/joeky888/app-fast/master/app-fast -o /usr
 sudo chmod +x /usr/local/bin/app-fast
 ```
 
+### Install for Android Termux
+
+```sh
+curl https://raw.githubusercontent.com/joeky888/app-fast/master/app-fast -o $PREFIX/bin/app-fast
+chmod +x $PREFIX/bin/app-fast
+```
+
 ### What it does
 
 * Download packages faster
