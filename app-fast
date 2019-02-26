@@ -106,7 +106,7 @@ fi
 ######################
 
 if [ $(command -v pacman) ] && echo "$@" | grep -q "\-S"; then
-  cachedir=$(pacman -v 2>/dev/null | grep Cache | cut -f 3 -d " ")
+  cachedir=$(pacman-conf Cachedir)
   mkdir -p $cachedir
   cd $cachedir
 
