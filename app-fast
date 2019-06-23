@@ -34,9 +34,11 @@ if echo "$OSTYPE" | grep -q "darwin" && echo "$@" | grep -q -E "upgrade|install"
 
   for package in "${packages[@]}"
   do
-    echo "Fetching $package"
-
-    alldeps=$(echo -e "${package}\n$(brew deps $package)")
+    alldeps=$package
+    if echo "$@" | grep -q "install"; then
+      echo "Fetching $package"
+      alldeps=$(echo -e "${package}\n$(brew deps $package)")
+    fi
 
     while read -r dep; do
       filename=$(echo "$dep" | perl -C -Mutf8 -pe "s/.*--//")
