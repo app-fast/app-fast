@@ -76,14 +76,14 @@ if [ $(command -v apt-get) ] && echo "$@" | grep -q -E "upgrade|install|dist-upg
 
   APT=$([ $(command -v apt) ] && echo "apt" || echo "apt-get")
 
+  [ $(command -v aria2c) ] || $APT install -y aria2
+
+  # Download unfinished jobs
   eval $(apt-config shell CACHE Dir::Cache)
   eval $(apt-config shell ARCHIVES Dir::Cache::archives)
   cachedir="/${CACHE}/${ARCHIVES}/partial"
   mkdir -p $cachedir
   cd $cachedir
-
-  # Download unfinished jobs
-  [ $(command -v aria2c) ] || $APT install -y aria2
   [ -f app-fast.list ] && echo "Downloading unfinished jobs." && aria2c $DOWNLOADARGS -i app-fast.list
 
   # Create new jobs
@@ -108,12 +108,13 @@ fi
 ######################
 
 if [ $(command -v pacman) ] && echo "$@" | grep -q "\-S"; then
+
+  [ $(command -v aria2c) ] || pacman -S --noconfirm --needed aria2
+
+  # Download unfinished jobs
   cachedir=$(pacman-conf Cachedir)
   mkdir -p $cachedir
   cd $cachedir
-
-  # Download unfinished jobs
-  [ $(command -v aria2c) ] || pacman -S --noconfirm --needed aria2
   [ -f app-fast.list ] && echo "Downloading unfinished jobs." && aria2c $DOWNLOADARGS -i app-fast.list
 
   # Create new jobs
