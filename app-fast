@@ -51,7 +51,7 @@ if echo "$OSTYPE" | grep -q "darwin" && echo "$@" | grep -q -E "upgrade|install"
   [ -f app-fast.list ] && aria2c $DOWNLOADARGS -i app-fast.list
 
   echo "Executing: brew $@"
-  brew $@ && rm -f app-fast.list && exit 0
+  HOMEBREW_NO_INSTALL_CLEANUP=1 brew $@ && rm -f app-fast.list && exit 0
 
   exit 1
 fi
