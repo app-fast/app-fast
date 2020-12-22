@@ -87,7 +87,7 @@ if [ $(command -v apt-get) ] && echo "$@" | grep -q -E "upgrade|install|dist-upg
   [ -f app-fast.list ] && echo "Downloading unfinished jobs." && aria2c $DOWNLOADARGS -i app-fast.list
 
   # Create new jobs
-  $APT -y --print-uris $@ | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee app-fast.list && aria2c -c $DOWNLOADARGS -i app-fast.list
+  $APT -y --print-uris $@ | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee app-fast.list && aria2c $DOWNLOADARGS -i app-fast.list
 
   echo "Executing: $APT $@"
   $APT $@ && rm -f app-fast.list && exit 0
@@ -118,7 +118,7 @@ if [ $(command -v pacman) ] && echo "$@" | grep -q "\-S"; then
   [ -f app-fast.list ] && echo "Downloading unfinished jobs." && aria2c $DOWNLOADARGS -i app-fast.list
 
   # Create new jobs
-  pacman $@ --print --print-format "%l" | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee app-fast.list && aria2c -c $DOWNLOADARGS -i app-fast.list
+  pacman $@ --print --print-format "%l" | grep -E -o -e "(ht|f)tp[s]?://[^\']+" | tee app-fast.list && aria2c $DOWNLOADARGS -i app-fast.list
 
   echo "Executing: pacman $@"
   pacman $(echo "$1" | sed "s/y//g") ${@:2} && rm -f app-fast.list && exit 0
