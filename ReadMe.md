@@ -45,28 +45,28 @@ On Windows Msys2, you should put [aria2.exe](https://github.com/aria2/aria2/rele
 Wget
 
 ```sh
-sudo wget https://raw.githubusercontent.com/joeky888/app-fast/master/app-fast -O /usr/bin/app-fast
+sudo wget https://raw.githubusercontent.com/app-fast/app-fast/master/app-fast -O /usr/bin/app-fast
 sudo chmod +x /usr/bin/app-fast
 ```
 
 Curl
 
 ```sh
-sudo curl https://raw.githubusercontent.com/joeky888/app-fast/master/app-fast -o /usr/bin/app-fast
+sudo curl https://raw.githubusercontent.com/app-fast/app-fast/master/app-fast -o /usr/bin/app-fast
 sudo chmod +x /usr/bin/app-fast
 ```
 
 Aria2
 
 ```sh
-sudo aria2c https://raw.githubusercontent.com/joeky888/app-fast/master/app-fast -d / -o /usr/bin/app-fast
+sudo aria2c https://raw.githubusercontent.com/app-fast/app-fast/master/app-fast -d / -o /usr/bin/app-fast
 sudo chmod +x /usr/bin/app-fast
 ```
 
 ### Install for macOS
 
 ```sh
-curl https://raw.githubusercontent.com/joeky888/app-fast/master/app-fast -o /usr/local/bin/app-fast
+curl https://raw.githubusercontent.com/app-fast/app-fast/master/app-fast -o /usr/local/bin/app-fast
 sudo chmod +x /usr/local/bin/app-fast
 ```
 
@@ -74,7 +74,7 @@ sudo chmod +x /usr/local/bin/app-fast
 
 ```sh
 pkg i curl -y
-curl https://raw.githubusercontent.com/joeky888/app-fast/master/app-fast -o $PREFIX/bin/app-fast
+curl https://raw.githubusercontent.com/app-fast/app-fast/master/app-fast -o $PREFIX/bin/app-fast
 chmod +x $PREFIX/bin/app-fast
 ```
 
