@@ -100,7 +100,7 @@ chmod +x $PREFIX/bin/app-fast
 
 ### Note
 
-* With [pacman](https://wiki.archlinux.org/title/pacman) v6.0 and onwards you can also set `ParallelDownloads = 8` to the `/etc/pacman.conf` file
+* With [pacman](https://wiki.archlinux.org/title/pacman) v6.0 and onwards you can also set `ParallelDownloads = 8` in the file `/etc/pacman.conf`
 * I don't have any apple devices so macOS port is experimental.
 * On Linux I use sed command, on macOS I use perl command.
 
