@@ -39,7 +39,6 @@ Make sure you have the permission to execute it `chmod +x app-fast`.
 
 On Windows Msys2, you should put [aria2.exe](https://github.com/aria2/aria2/releases) to your system path first, because Msys2 does not provide aria2 package.
 
-
 ### Install for Linux
 
 Wget
@@ -63,7 +62,7 @@ sudo aria2c https://raw.githubusercontent.com/app-fast/app-fast/master/app-fast 
 sudo chmod +x /usr/bin/app-fast
 ```
 
-### Install for macOS
+### Install for macOS (Note that this script is broken on macOS for now)
 
 ```sh
 curl https://raw.githubusercontent.com/app-fast/app-fast/master/app-fast -o /usr/local/bin/app-fast
@@ -80,33 +79,34 @@ chmod +x $PREFIX/bin/app-fast
 
 ### What it does
 
-* Download packages faster
-* Upgrade packages faster
-* Support macOS homebrew
-* Support Ubuntu/Debian
-* Support Archlinux
-* Support Android Termux
-* Support Windows Msys2
+- Download packages faster
+- Upgrade packages faster
+- Support macOS homebrew
+- Support Ubuntu/Debian
+- Support Archlinux
+- Support Android Termux
+- Support Windows Msys2
 
 ### What it doesn't
 
-* Uninstall a package
-* Search a package
-* Support Archlinux AUR
-* Support macOS homebrew tap
-* Support macOS homebrew bottles like `bottles-science` and `bottle :unneeded`
-* Support Ubuntu mirror protocol like `mirror://mirrors.ubuntu.com/mirrors.txt`
-* Support proxies
+- Uninstall a package
+- Search a package
+- Support Archlinux AUR
+- Support macOS homebrew tap
+- Support macOS homebrew bottles like `bottles-science` and `bottle :unneeded`
+- Support Ubuntu mirror protocol like `mirror://mirrors.ubuntu.com/mirrors.txt`
+- Support proxies
 
 ### Note
 
-* With [pacman](https://wiki.archlinux.org/title/pacman) v6.0 and onwards you can also set `ParallelDownloads = 8` in the file `/etc/pacman.conf`
-* I don't have any apple devices so macOS port is experimental.
-* On Linux I use sed command, on macOS I use perl command.
+- With [pacman](https://wiki.archlinux.org/title/pacman) v6.0 and onwards you can also set `ParallelDownloads = 8` in the file `/etc/pacman.conf`
+- With Homebrew v5.0 and onwards you can also set `HOMEBREW_DOWNLOAD_CONCURRENCY = 8`
+- I don't have any apple devices so macOS port is experimental.
+- On Linux I use sed command, on macOS I use perl command.
 
 ### Why not apt-fast or powerpill
 
-* I use it for docker containers and [KVMs](https://en.wikipedia.org/wiki/Kernel-based_Virtual_Machine), only installing packages is needed.
+- I use it for docker containers and [KVMs](https://en.wikipedia.org/wiki/Kernel-based_Virtual_Machine), only installing packages is needed.
 
 ### License
 
