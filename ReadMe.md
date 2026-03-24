@@ -101,7 +101,7 @@ chmod +x $PREFIX/bin/app-fast
 
 - With [pacman](https://wiki.archlinux.org/title/pacman) v6.0 and onwards you can also set `ParallelDownloads = 8` in the file `/etc/pacman.conf`
 - With Homebrew v5.0 and onwards you can also set `HOMEBREW_DOWNLOAD_CONCURRENCY = 8`
-- I don't have any apple devices so macOS port is experimental.
+- macOS port is broken now, try zerobrew or nanobrew
 - On Linux I use sed command, on macOS I use perl command.
 
 ### Why not apt-fast or powerpill
